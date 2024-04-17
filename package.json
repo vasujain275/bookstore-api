@@ -22,6 +22,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@prisma/client": "^5.12.1",
     "concurrently": "^8.2.2",
     "epxress": "0.0.1-security",
     "rimraf": "^5.0.5"
