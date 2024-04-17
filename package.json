@@ -1,0 +1,27 @@
+{
+  "name": "bookstore-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "build":"rimraf dist && tsc",
+    "prestart":"pnpm run build",
+    "start": "node --env-file .env dist/index.js",
+    "predev":"pnpm run build",
+    "dev": "concurrently \"tsc -w\" \"nodemon --env-file .env dist/index.js\"",
+    "lint": "pnpm exec prettier . --write"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "rimraf": "^5.0.5"
+  }
+}
