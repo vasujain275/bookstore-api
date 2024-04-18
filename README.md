@@ -147,7 +147,3 @@ This project is a simple Express API that serves as a backend for managing a col
 - **Description:** Deletes a category from the database.
 - **Parameters:** `id` - ID of the category to be deleted.
 - **Response:** A message confirming the deletion of the category.
-
-## Setup Instructions
-
-1. **Clone the repository:**
