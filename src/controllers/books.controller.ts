@@ -19,26 +19,23 @@ const addBooks = async (req: Request, res: Response) => {
     console.error(e);
     await prisma.$disconnect();
     res.status(500).json({
-      "message": "Error creating book data to database"
-    })
+      message: "Error creating book data to database",
+    });
   }
 };
 
 const getbooks = async (req: Request, res: Response) => {
   try {
     const books = await prisma.book.findMany();
-    res
-      .status(200)
-      .json({
-        "books": books
-      });
-
+    res.status(200).json({
+      books: books,
+    });
   } catch (e) {
     console.error(e);
     await prisma.$disconnect();
     res.status(500).json({
-      "message": "Error retriving Books data from db"
-    })
+      message: "Error retriving Books data from db",
+    });
   }
 };
 
@@ -47,21 +44,18 @@ const getOneBook = async (req: Request, res: Response) => {
     const id = req.params.id;
     const book = await prisma.book.findUnique({
       where: {
-        id: id
-      }
+        id: id,
+      },
     });
-    res
-      .status(200)
-      .json({
-        "book": book
-      });
-
+    res.status(200).json({
+      book: book,
+    });
   } catch (e) {
     console.error(e);
     await prisma.$disconnect();
     res.status(500).json({
-      "message": "Error retriving Book data from db"
-    })
+      message: "Error retriving Book data from db",
+    });
   }
 };
 
