@@ -1,9 +1,17 @@
-const Varname = process.env.Name;
+import express from "express";
+import { PrismaClient } from "@prisma/client";
+import { booksRouter } from "./routes/books.route";
 
-console.log(`Hello from ${Varname}!`);
+const PORT = process.env.PORT || 8069;
 
-const addNums = (a: number, b: number) => {
-  return a + b;
-};
+const prisma = new PrismaClient();
+const app = express();
 
-console.log(addNums(2, 7));
+app.use("/api/v1/books", booksRouter)
+
+
+app.listen(PORT, () => {
+  console.log(`Server is running at PORT - ${PORT}`)
+})
+
+export { prisma }
