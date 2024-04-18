@@ -7,6 +7,11 @@ const PORT = process.env.PORT || 8069;
 const prisma = new PrismaClient();
 const app = express();
 
+// Middlewares
+app.use(express.json());
+
+
+
 app.use("/api/v1/books", booksRouter)
 
 
