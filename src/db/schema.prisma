@@ -13,8 +13,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Models 
+
+model Author {
+  id    String @id @default(uuid())
+  name  String
+  email String @unique
+  books Book[]
+}
+
 model Book {
-  id            String @id @default(uuid())
-  name          String @unique
+  id            String     @id @default(uuid())
+  title         String     @unique
   publishedYear Int
+  author        Author     @relation(fields: [authorId], references: [id])
+  authorId      String
+  categories    Category[]
+}
+
+model Category {
+  id    String @id @default(uuid())
+  name  String
+  books Book[]
 }
