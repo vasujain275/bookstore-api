@@ -10,10 +10,12 @@ datasource db {
 // Models
 
 model Author {
-  id    String @id @default(uuid())
-  name  String
-  email String @unique
-  books Book[]
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  books     Book[]
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
 
   @@index([name, email])
 }
@@ -26,6 +28,8 @@ model Book {
   authorId      String
   categories    Category[]
   price         Float
+  updatedAt     DateTime   @updatedAt
+  createdAt     DateTime   @default(now())
 
   @@index([title])
 }
