@@ -14,6 +14,8 @@ model Author {
   name  String
   email String @unique
   books Book[]
+
+  @@index([name, email])
 }
 
 model Book {
@@ -23,6 +25,8 @@ model Book {
   author        Author     @relation(fields: [authorId], references: [id])
   authorId      String
   categories    Category[]
+
+  @@index([title])
 }
 
 model Category {
