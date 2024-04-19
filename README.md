@@ -2,23 +2,23 @@
 
 This project is a simple Express API that serves as a backend for managing a collection of books stored in a PostgreSQL database. It provides endpoints to perform CRUD operations (Create, Read, Update, Delete) on books, authors, and categories.
 
-## Project Functionality
-
-- **Create a new book**: Allows users to add a new book to the database.
-- **Retrieve all books**: Fetches a list of all books stored in the database.
-- **Retrieve a specific book**: Retrieves details of a specific book identified by its ID.
-- **Update a book**: Allows users to update information of an existing book.
-- **Delete a book**: Deletes a book from the database.
-- **Create a new author**: Allows users to add a new author to the database.
-- **Retrieve all authors**: Fetches a list of all authors stored in the database.
-- **Retrieve a specific author**: Retrieves details of a specific author identified by their ID.
-- **Update an author**: Allows users to update information of an existing author.
-- **Delete an author**: Deletes an author from the database.
-- **Create a new category**: Allows users to add a new category to the database.
-- **Retrieve all categories**: Fetches a list of all categories stored in the database.
-- **Retrieve a specific category**: Retrieves details of a specific category identified by its ID.
-- **Update a category**: Allows users to update information of an existing category.
-- **Delete a category**: Deletes a category from the database.
+<!-- ## Project Functionality -->
+<!---->
+<!-- - **Create a new book**: Allows users to add a new book to the database. -->
+<!-- - **Retrieve all books**: Fetches a list of all books stored in the database. -->
+<!-- - **Retrieve a specific book**: Retrieves details of a specific book identified by its ID. -->
+<!-- - **Update a book**: Allows users to update information of an existing book. -->
+<!-- - **Delete a book**: Deletes a book from the database. -->
+<!-- - **Create a new author**: Allows users to add a new author to the database. -->
+<!-- - **Retrieve all authors**: Fetches a list of all authors stored in the database. -->
+<!-- - **Retrieve a specific author**: Retrieves details of a specific author identified by their ID. -->
+<!-- - **Update an author**: Allows users to update information of an existing author. -->
+<!-- - **Delete an author**: Deletes an author from the database. -->
+<!-- - **Create a new category**: Allows users to add a new category to the database. -->
+<!-- - **Retrieve all categories**: Fetches a list of all categories stored in the database. -->
+<!-- - **Retrieve a specific category**: Retrieves details of a specific category identified by its ID. -->
+<!-- - **Update a category**: Allows users to update information of an existing category. -->
+<!-- - **Delete a category**: Deletes a category from the database. -->
 
 ## Models
 ![image](https://github.com/vasujain275/bookstore-api/assets/69643310/03a1e045-078b-42af-a312-ebc5528b9b55)
