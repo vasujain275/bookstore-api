@@ -3,12 +3,16 @@ import { Response, Request } from "express";
 import { Book } from "@prisma/client";
 
 const addBooks = async (req: Request, res: Response) => {
-  const { name, publishedYear } = req.body;
+  const { title, publishedYear, authorId, price } = req.body;
   try {
     const book: Book = await prisma.book.create({
       data: {
-        name,
+        title,
         publishedYear,
+        price,
+        author: {
+          connect: { id: authorId },
+        },
       },
     });
 

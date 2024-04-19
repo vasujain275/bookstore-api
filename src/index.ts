@@ -21,9 +21,11 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 
 // Routers Import
 import { booksRouter } from "./routes/books.route";
+import { authorRouter } from "./routes/authors.route";
 
 // Routes
 app.use("/api/v1/books", booksRouter);
+app.use("/api/v1/authors", authorRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running at PORT - ${PORT}`);
