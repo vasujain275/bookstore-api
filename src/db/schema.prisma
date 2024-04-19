@@ -25,6 +25,7 @@ model Book {
   author        Author     @relation(fields: [authorId], references: [id])
   authorId      String
   categories    Category[]
+  price         Float
 
   @@index([title])
 }
