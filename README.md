@@ -20,6 +20,11 @@ This project is a simple Express API that serves as a backend for managing a col
 - **Update a category**: Allows users to update information of an existing category.
 - **Delete a category**: Deletes a category from the database.
 
+## Models
+![image](https://github.com/vasujain275/bookstore-api/assets/69643310/62476bd1-35ec-442d-9855-fbc66f8a5f3b)
+
+
+
 ## API Routes
 
 ### Books
