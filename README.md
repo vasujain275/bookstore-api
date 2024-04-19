@@ -21,7 +21,8 @@ This project is a simple Express API that serves as a backend for managing a col
 - **Delete a category**: Deletes a category from the database.
 
 ## Models
-![image](https://github.com/vasujain275/bookstore-api/assets/69643310/62476bd1-35ec-442d-9855-fbc66f8a5f3b)
+![image](https://github.com/vasujain275/bookstore-api/assets/69643310/03a1e045-078b-42af-a312-ebc5528b9b55)
+
 
 
 
