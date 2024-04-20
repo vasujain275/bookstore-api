@@ -22,7 +22,9 @@ This project is a simple Express API that serves as a backend for managing a col
 
 ## Models
 
-![image](https://github.com/vasujain275/bookstore-api/assets/69643310/03a1e045-078b-42af-a312-ebc5528b9b55)
+![image](https://github.com/vasujain275/bookstore-api/assets/69643310/0b71739d-228a-491d-8368-573bd4d654bf)
+
+
 
 ## API Routes
 
