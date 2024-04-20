@@ -11,7 +11,6 @@ const getAuthors = asyncHandler(async (req, res) => {
         books: true,
       },
     });
-    console.log(authors);
     res.json(
       new ApiResponse(200, authors, "Fetched all the Authors Succesfully!")
     );

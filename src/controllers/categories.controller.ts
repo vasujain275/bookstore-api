@@ -11,7 +11,6 @@ const getCategories = asyncHandler(async (req, res) => {
         books: true,
       },
     });
-    console.log(categories);
     res.json(
       new ApiResponse(
         200,
