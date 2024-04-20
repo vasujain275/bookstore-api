@@ -2,29 +2,49 @@
 
 This project is a simple Express API that serves as a backend for managing a collection of books stored in a PostgreSQL database. It provides endpoints to perform CRUD operations (Create, Read, Update, Delete) on books, authors, and categories.
 
-<!-- ## Project Functionality -->
-<!---->
-<!-- - **Create a new book**: Allows users to add a new book to the database. -->
-<!-- - **Retrieve all books**: Fetches a list of all books stored in the database. -->
-<!-- - **Retrieve a specific book**: Retrieves details of a specific book identified by its ID. -->
-<!-- - **Update a book**: Allows users to update information of an existing book. -->
-<!-- - **Delete a book**: Deletes a book from the database. -->
-<!-- - **Create a new author**: Allows users to add a new author to the database. -->
-<!-- - **Retrieve all authors**: Fetches a list of all authors stored in the database. -->
-<!-- - **Retrieve a specific author**: Retrieves details of a specific author identified by their ID. -->
-<!-- - **Update an author**: Allows users to update information of an existing author. -->
-<!-- - **Delete an author**: Deletes an author from the database. -->
-<!-- - **Create a new category**: Allows users to add a new category to the database. -->
-<!-- - **Retrieve all categories**: Fetches a list of all categories stored in the database. -->
-<!-- - **Retrieve a specific category**: Retrieves details of a specific category identified by its ID. -->
-<!-- - **Update a category**: Allows users to update information of an existing category. -->
-<!-- - **Delete a category**: Deletes a category from the database. -->
+## Table of Contents
+
+- [Models](#models)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Standard API Response](#standard-api-response)
+  - [Standard API Error](#standard-api-error)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Models
 
 ![image](https://github.com/vasujain275/bookstore-api/assets/69643310/edff67df-b576-4e8f-a4f3-9fbf672a2c0c)
 
-## Standard API Response
+## Installation
+
+1. **Clone the repository:**
+   - Clone the repository using `git clone https://github.com/vasujain275/bookstore-api.git`.
+
+2. **Install Node.js:**
+   - If you haven't installed Node.js yet, make sure to install it. You can find the recommended Node.js version to use in the `.node-version` file.
+
+3. **Install `pnpm`:**
+   - If you don't have `pnpm` installed, you can install it globally using `npm install -g pnpm`.
+
+4. **Install dependencies:**
+   - Navigate into the project directory and run `pnpm install` to install the project dependencies.
+
+5. **Set up environment variables:**
+   - Copy the `.env.example` file and rename it to `.env`. Fill in the required variables with your own values.
+
+6. **Set up PostgreSQL:**
+   - Set up your PostgreSQL instance according to your preference. After setting up, run `pnpm dlx prisma migrate` to apply migrations using Prisma.
+
+7. **Start the development server:**
+   - Finally, start the development server by running `pnpm dlx run dev`.
+
+## Usage
+
+To use the API, send HTTP requests to the provided endpoints. You can find detailed documentation on how to interact with the API in the Swagger documentation available after hosting at [localhost:8069/docs](http://localhost:8069/docs).
+
+
+### Standard API Response
 
 The `ApiResponse` class provides a standardized format for API responses. It includes the following properties:
 
@@ -43,7 +63,7 @@ The `ApiResponse` class provides a standardized format for API responses. It inc
   "success": true
 }
 ```
-## Standard API Error
+### Standard API Error
 
 The `ApiError` class represents a standardized format for API error responses. It extends the built-in `Error` class and includes the following properties:
 
@@ -67,130 +87,23 @@ The `ApiError` class represents a standardized format for API error responses. I
 }
 ```
 
-## API Routes
 
-### Books
+## Contributing
 
-#### Get all books
+Contributions are welcome! If you'd like to contribute to this project, please follow the standard Git workflow:
 
-- **Endpoint:** `/api/books`
-- **Method:** `GET`
-- **Description:** Retrieves a list of all books.
-- **Response:** An array of book objects with details like `id`, `title`, `authorId`, `categoryId`, and `publishedYear`.
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature`).
+3. Make your changes.
+4. Commit your changes (`git commit -am 'Add some feature'`).
+5. Push to the branch (`git push origin feature/your-feature`).
+6. Create a new Pull Request.
 
-#### Get a specific book
+Please ensure your code adheres to the existing code style and includes appropriate tests.
 
-- **Endpoint:** `/api/books/:id`
-- **Method:** `GET`
-- **Description:** Retrieves details of a specific book identified by its ID.
-- **Parameters:** `id` - ID of the book.
-- **Response:** Details of the book including `id`, `title`, `authorId`, `categoryId`, and `publishedYear`.
+## License
 
-#### Add a new book
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-- **Endpoint:** `/api/books`
-- **Method:** `POST`
-- **Description:** Adds a new book to the database.
-- **Request Body:** JSON object with `title`, `authorId`, `categoryId`, and `publishedYear` fields.
-- **Response:** Details of the newly added book including `id`, `title`, `authorId`, `categoryId`, and `publishedYear`.
 
-#### Update a book
 
-- **Endpoint:** `/api/books/:id`
-- **Method:** `PUT`
-- **Description:** Updates information of an existing book identified by its ID.
-- **Parameters:** `id` - ID of the book to be updated.
-- **Request Body:** JSON object with updated `title`, `authorId`, `categoryId`, and `publishedYear` fields.
-- **Response:** Details of the updated book including `id`, `title`, `authorId`, `categoryId`, and `publishedYear`.
-
-#### Delete a book
-
-- **Endpoint:** `/api/books/:id`
-- **Method:** `DELETE`
-- **Description:** Deletes a book from the database.
-- **Parameters:** `id` - ID of the book to be deleted.
-- **Response:** A message confirming the deletion of the book.
-
-### Authors
-
-#### Get all authors
-
-- **Endpoint:** `/api/authors`
-- **Method:** `GET`
-- **Description:** Retrieves a list of all authors.
-- **Response:** An array of author objects with details like `id`, `name`, and `email`.
-
-#### Get a specific author
-
-- **Endpoint:** `/api/authors/:id`
-- **Method:** `GET`
-- **Description:** Retrieves details of a specific author identified by their ID.
-- **Parameters:** `id` - ID of the author.
-- **Response:** Details of the author including `id`, `name`, and `email`.
-
-#### Add a new author
-
-- **Endpoint:** `/api/authors`
-- **Method:** `POST`
-- **Description:** Adds a new author to the database.
-- **Request Body:** JSON object with `name` and `email` fields.
-- **Response:** Details of the newly added author including `id`, `name`, and `email`.
-
-#### Update an author
-
-- **Endpoint:** `/api/authors/:id`
-- **Method:** `PUT`
-- **Description:** Updates information of an existing author identified by their ID.
-- **Parameters:** `id` - ID of the author to be updated.
-- **Request Body:** JSON object with updated `name` and `email` fields.
-- **Response:** Details of the updated author including `id`, `name`, and `email`.
-
-#### Delete an author
-
-- **Endpoint:** `/api/authors/:id`
-- **Method:** `DELETE`
-- **Description:** Deletes an author from the database.
-- **Parameters:** `id` - ID of the author to be deleted.
-- **Response:** A message confirming the deletion of the author.
-
-### Categories
-
-#### Get all categories
-
-- **Endpoint:** `/api/categories`
-- **Method:** `GET`
-- **Description:** Retrieves a list of all categories.
-- **Response:** An array of category objects with details like `id` and `name`.
-
-#### Get a specific category
-
-- **Endpoint:** `/api/categories/:id`
-- **Method:** `GET`
-- **Description:** Retrieves details of a specific category identified by its ID.
-- **Parameters:** `id` - ID of the category.
-- **Response:** Details of the category including `id` and `name`.
-
-#### Add a new category
-
-- **Endpoint:** `/api/categories`
-- **Method:** `POST`
-- **Description:** Adds a new category to the database.
-- **Request Body:** JSON object with `name` field.
-- **Response:** Details of the newly added category including `id` and `name`.
-
-#### Update a category
-
-- **Endpoint:** `/api/categories/:id`
-- **Method:** `PUT`
-- **Description:** Updates information of an existing category identified by its ID.
-- **Parameters:** `id` - ID of the category to be updated.
-- **Request Body:** JSON object with updated `name` field.
-- **Response:** Details of the updated category including `id` and `name`.
-
-#### Delete a category
-
-- **Endpoint:** `/api/categories/:id`
-- **Method:** `DELETE`
-- **Description:** Deletes a category from the database.
-- **Parameters:** `id` - ID of the category to be deleted.
-- **Response:** A message confirming the deletion of the category.
