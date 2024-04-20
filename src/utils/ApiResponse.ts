@@ -12,4 +12,4 @@ class ApiResponse<T> {
   }
 }
 
-export { ApiResponse }; 
+export { ApiResponse };

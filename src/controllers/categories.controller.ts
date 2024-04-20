@@ -13,7 +13,11 @@ const getCategories = asyncHandler(async (req, res) => {
     });
     console.log(categories);
     res.json(
-      new ApiResponse(200, categories, "Fetched all the Categories Succesfully!")
+      new ApiResponse(
+        200,
+        categories,
+        "Fetched all the Categories Succesfully!"
+      )
     );
   } catch (e) {
     console.error(e);
@@ -34,7 +38,9 @@ const getOnecategory = asyncHandler(async (req, res) => {
         books: true,
       },
     });
-    res.json(new ApiResponse(200, category, "Fetched the category Succesfully!"));
+    res.json(
+      new ApiResponse(200, category, "Fetched the category Succesfully!")
+    );
   } catch (e) {
     console.error(e);
     await prisma.$disconnect();
@@ -49,18 +55,16 @@ const addNewcategory = asyncHandler(async (req, res) => {
     const category = await prisma.category.create({
       data: {
         name,
-      }
+      },
     });
 
-    res.json(new ApiResponse(200, category, "Created new category Entry"))
-
+    res.json(new ApiResponse(200, category, "Created new category Entry"));
   } catch (e) {
     console.error(e);
     await prisma.$disconnect();
-    res.json(new ApiError(500, "Can't create new category entry to db"))
+    res.json(new ApiError(500, "Can't create new category entry to db"));
   }
-})
-
+});
 
 // updatecategory
 

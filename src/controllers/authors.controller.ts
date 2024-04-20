@@ -49,19 +49,17 @@ const addNewAuthor = asyncHandler(async (req, res) => {
     const author = await prisma.author.create({
       data: {
         name,
-        email
-      }
+        email,
+      },
     });
 
-    res.json(new ApiResponse(200, author, "Created new Author Entry"))
-
+    res.json(new ApiResponse(200, author, "Created new Author Entry"));
   } catch (e) {
     console.error(e);
     await prisma.$disconnect();
-    res.json(new ApiError(500, "Can't create new author entry to db"))
+    res.json(new ApiError(500, "Can't create new author entry to db"));
   }
-})
-
+});
 
 // updateAuthor
 
