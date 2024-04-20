@@ -44,21 +44,40 @@ const addNewBook = asyncHandler(async (req, res) => {
           },
         },
         categories: {
-          connect: categories.map((categoryId: string) => ({ id: categoryId }))
+          connect: categories.map((categoryId: string) => ({ id: categoryId })),
           // Map each categoryId to { id: categoryId } for Prisma to connect
-        }
+        },
       },
       include: {
         categories: true,
       },
     });
 
-    res.json(new ApiResponse(200, book, "Created new Author Entry"));
+    res.json(new ApiResponse(200, book, "Created new Book Entry"));
   } catch (e) {
     console.error(e);
     await prisma.$disconnect();
-    res.json(new ApiError(500, "Can't create new author entry to db"));
+    res.json(new ApiError(500, "Can't create new book entry to db"));
   }
 });
 
-export { getBooks, getOneBook, addNewBook };
+const deleteBook = asyncHandler(async (req, res) => {
+  try {
+    const bookId = req.params.id;
+    const deletedbook = await prisma.book.delete({
+      where: {
+        id: bookId,
+      },
+    });
+
+    res.json(new ApiResponse(200, deletedbook, "Book Deleted Sucessfully"));
+  } catch (e) {
+    console.error(e);
+    await prisma.$disconnect();
+    res.json(new ApiError(500, "Can't delete the Book"));
+  }
+});
+
+const updateBook = asyncHandler(async (req, res) => { });
+
+export { getBooks, getOneBook, addNewBook, deleteBook, updateBook };

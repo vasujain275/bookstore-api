@@ -24,9 +24,6 @@ This project is a simple Express API that serves as a backend for managing a col
 
 ![image](https://github.com/vasujain275/bookstore-api/assets/69643310/edff67df-b576-4e8f-a4f3-9fbf672a2c0c)
 
-
-
-
 ## API Routes
 
 ### Books
