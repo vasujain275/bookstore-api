@@ -2,8 +2,9 @@ import express from "express";
 import { PrismaClient } from "@prisma/client";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import swaggerDocs from "./utils/swagger";
 
-const PORT = process.env.PORT || 8069;
+const PORT: number = parseInt(<string>process.env.PORT, 10) || 8069;
 
 const prisma = new PrismaClient();
 const app = express();
@@ -32,5 +33,7 @@ app.use("/api/v1/categories", categoryRouter);
 app.listen(PORT, () => {
   console.log(`Server is running at PORT - ${PORT}`);
 });
+
+swaggerDocs(app, PORT)
 
 export { prisma };
