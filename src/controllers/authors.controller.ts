@@ -87,7 +87,7 @@ const updateAuthor = asyncHandler(async (req, res) => {
       where: {
         id: authorId,
       },
-      data: authorData
+      data: authorData,
     });
 
     res.json(new ApiResponse(200, updatedAuthor, "Author Deleted Sucessfully"));
@@ -97,7 +97,5 @@ const updateAuthor = asyncHandler(async (req, res) => {
     res.json(new ApiError(500, "Can't delete the author"));
   }
 });
-
-
 
 export { getAuthors, getOneAuthor, addNewAuthor, deleteAuthor, updateAuthor };

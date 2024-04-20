@@ -22,8 +22,8 @@ const getOneBook = asyncHandler(async (req, res) => {
         id: bookId,
       },
       include: {
-        categories: true
-      }
+        categories: true,
+      },
     });
     res.json(new ApiResponse(200, book, "Fetched the book Succesfully!"));
   } catch (e) {
@@ -56,11 +56,11 @@ const addNewBook = asyncHandler(async (req, res) => {
       },
     });
 
-    res.json(new ApiResponse(200, book, "Created new Book Entry"));
+    res.json(new ApiResponse(201, book, "Created new Book Entry"));
   } catch (e) {
     console.error(e);
     await prisma.$disconnect();
-    res.json(new ApiError(500, "Can't create new book entry to db"));
+    res.json(new ApiError(400, "Can't create new book entry to db"));
   }
 });
 
@@ -89,7 +89,7 @@ const updateBook = asyncHandler(async (req, res) => {
       where: {
         id: bookId,
       },
-      data: bookData
+      data: bookData,
     });
 
     res.json(new ApiResponse(200, updatedBook, "book Deleted Sucessfully"));
@@ -99,8 +99,5 @@ const updateBook = asyncHandler(async (req, res) => {
     res.json(new ApiError(500, "Can't delete the book"));
   }
 });
-
-
-
 
 export { getBooks, getOneBook, addNewBook, deleteBook, updateBook };

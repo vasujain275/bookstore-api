@@ -15,5 +15,4 @@ categoryRouter.route("/").post(addNewcategory);
 categoryRouter.route("/:id").delete(deleteCategory);
 categoryRouter.route("/:id").put(updateCategory);
 
-
 export { categoryRouter };

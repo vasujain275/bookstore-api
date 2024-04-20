@@ -74,17 +74,18 @@ const updateCategory = asyncHandler(async (req, res) => {
       where: {
         id: categoryId,
       },
-      data: categoryData
+      data: categoryData,
     });
 
-    res.json(new ApiResponse(200, updatedCategory, "Category Deleted Sucessfully"));
+    res.json(
+      new ApiResponse(200, updatedCategory, "Category Deleted Sucessfully")
+    );
   } catch (e) {
     console.error(e);
     await prisma.$disconnect();
     res.json(new ApiError(500, "Can't delete the Category"));
   }
 });
-
 
 // Deletecategory
 const deleteCategory = asyncHandler(async (req, res) => {
@@ -96,7 +97,9 @@ const deleteCategory = asyncHandler(async (req, res) => {
       },
     });
 
-    res.json(new ApiResponse(200, deletedCategory, "Category Deleted Sucessfully"));
+    res.json(
+      new ApiResponse(200, deletedCategory, "Category Deleted Sucessfully")
+    );
   } catch (e) {
     console.error(e);
     await prisma.$disconnect();
@@ -104,6 +107,10 @@ const deleteCategory = asyncHandler(async (req, res) => {
   }
 });
 
-
-
-export { getCategories, getOnecategory, addNewcategory, deleteCategory, updateCategory };
+export {
+  getCategories,
+  getOnecategory,
+  addNewcategory,
+  deleteCategory,
+  updateCategory,
+};
