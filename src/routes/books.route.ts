@@ -50,8 +50,48 @@ const booksRouter = Router();
  *     responses:
  *       '201':
  *         description: Created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 201
+ *                 data:
+ *                   type: object
+ *                   example:
+ *                     title: "string"
+ *                     publishedYear: 0
+ *                     authorId: "string"
+ *                     price: 0
+ *                     categories:
+ *                       - "string"
+ *                 message:
+ *                   type: string
+ *                   example: "Success"
+ *                 success:
+ *                   type: boolean
+ *                   example: true
  *       '400':
  *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 400
+ *                 data:
+ *                   type: object
+ *                   example: null
+ *                 message:
+ *                   type: string
+ *                   example: "Bad Request"
+ *                 success:
+ *                   type: boolean
+ *                   example: false
  */
 booksRouter.route("/").post(addNewBook);
 
@@ -68,9 +108,21 @@ booksRouter.route("/").post(addNewBook);
  *         content:
  *           application/json:
  *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Book'
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 200
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Book'
+ *                 message:
+ *                   type: string
+ *                   example: "Success"
+ *                 success:
+ *                   type: boolean
+ *                   example: true
  *       '404':
  *         description: No books found
  */
