@@ -68,5 +68,23 @@ const addNewcategory = asyncHandler(async (req, res) => {
 // updatecategory
 
 // Deletecategory
+const deleteCategory = asyncHandler(async (req, res) => {
+  try {
+    const categoryId = req.params.id;
+    const deletedCategory = await prisma.category.delete({
+      where: {
+        id: categoryId,
+      },
+    });
 
-export { getCategories, getOnecategory, addNewcategory };
+    res.json(new ApiResponse(200, deletedCategory, "Category Deleted Sucessfully"));
+  } catch (e) {
+    console.error(e);
+    await prisma.$disconnect();
+    res.json(new ApiError(500, "Can't delete the Category"));
+  }
+});
+
+
+
+export { getCategories, getOnecategory, addNewcategory, deleteCategory };

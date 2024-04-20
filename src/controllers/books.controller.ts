@@ -5,7 +5,7 @@ import { ApiError } from "../utils/ApiError";
 
 const getBooks = asyncHandler(async (req, res) => {
   try {
-    const books = await prisma.author.findMany();
+    const books = await prisma.book.findMany();
     res.json(new ApiResponse(200, books, "Fetched all the books Succesfully!"));
   } catch (e) {
     console.error(e);
@@ -17,10 +17,13 @@ const getBooks = asyncHandler(async (req, res) => {
 const getOneBook = asyncHandler(async (req, res) => {
   try {
     const bookId = req.params.id;
-    const book = await prisma.author.findUnique({
+    const book = await prisma.book.findUnique({
       where: {
         id: bookId,
       },
+      include: {
+        categories: true
+      }
     });
     res.json(new ApiResponse(200, book, "Fetched the book Succesfully!"));
   } catch (e) {
