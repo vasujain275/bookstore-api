@@ -24,6 +24,49 @@ This project is a simple Express API that serves as a backend for managing a col
 
 ![image](https://github.com/vasujain275/bookstore-api/assets/69643310/edff67df-b576-4e8f-a4f3-9fbf672a2c0c)
 
+## Standard API Response
+
+The `ApiResponse` class provides a standardized format for API responses. It includes the following properties:
+
+- `statusCode`: A numeric HTTP status code indicating the result of the request.
+- `data`: The payload of the response, typically containing the requested data or `null` if no data is available.
+- `message`: A descriptive message providing additional information about the response, defaulting to "Success" if not provided.
+- `success`: A boolean value indicating whether the request was successful based on the status code.
+
+#### Example
+
+```json
+{
+  "statusCode": 200,
+  "data": { "Your data here" },
+  "message": "Success",
+  "success": true
+}
+```
+## Standard API Error
+
+The `ApiError` class represents a standardized format for API error responses. It extends the built-in `Error` class and includes the following properties:
+
+- `statusCode`: A numeric HTTP status code indicating the error.
+- `data`: Always `null` for error responses.
+- `message`: A descriptive message providing details about the error, defaulting to "Something went wrong" if not provided.
+- `success`: A boolean value indicating the failure of the request.
+- `errors`: An array containing additional error details, such as validation errors or specific error messages.
+
+#### Example
+
+```json
+{
+  "statusCode": 404,
+  "data": null,
+  "message": "Resource not found",
+  "success": false,
+  "errors": [
+    "The requested resource could not be found"
+  ]
+}
+```
+
 ## API Routes
 
 ### Books
