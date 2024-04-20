@@ -21,6 +21,7 @@
     "@types/node": "^20.12.7",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.6",
+    "@types/yamljs": "^0.2.34",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
     "prisma": "^5.12.1",
@@ -35,7 +36,8 @@
     "express": "^4.19.2",
     "rimraf": "^5.0.5",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "yamljs": "^0.3.0"
   },
   "prisma": {
     "schema": "src/db/schema.prisma"

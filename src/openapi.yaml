@@ -1,0 +1,66 @@
+openapi: 3.1.0
+components:
+  schemas:
+    Author:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+
+      required:
+        - id
+        - name
+        - email
+    Book:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        publishedYear:
+          type: integer
+        author:
+          $ref: '#/components/schemas/Author'
+        authorId:
+          type: string
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+        price:
+          type: number
+        updatedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - title
+        - publishedYear
+        - authorId
+        - price
+        - updatedAt
+        - createdAt
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+        - id
+        - name
