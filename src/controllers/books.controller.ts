@@ -47,8 +47,8 @@ const addNewBook = asyncHandler(async (req, res) => {
           },
         },
         categories: {
-          connect: categories.map((categoryId: string) => ({ id: categoryId })),
-          // Map each categoryId to { id: categoryId } for Prisma to connect
+          connect: categories.map((bookId: string) => ({ id: bookId })),
+          // Map each bookId to { id: bookId } for Prisma to connect
         },
       },
       include: {
@@ -81,6 +81,26 @@ const deleteBook = asyncHandler(async (req, res) => {
   }
 });
 
-const updateBook = asyncHandler(async (req, res) => { });
+const updateBook = asyncHandler(async (req, res) => {
+  try {
+    const bookId = req.params.id;
+    const bookData = req.body;
+    const updatedBook = await prisma.book.update({
+      where: {
+        id: bookId,
+      },
+      data: bookData
+    });
+
+    res.json(new ApiResponse(200, updatedBook, "book Deleted Sucessfully"));
+  } catch (e) {
+    console.error(e);
+    await prisma.$disconnect();
+    res.json(new ApiError(500, "Can't delete the book"));
+  }
+});
+
+
+
 
 export { getBooks, getOneBook, addNewBook, deleteBook, updateBook };

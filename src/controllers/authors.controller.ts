@@ -79,5 +79,25 @@ const deleteAuthor = asyncHandler(async (req, res) => {
   }
 });
 
+const updateAuthor = asyncHandler(async (req, res) => {
+  try {
+    const authorId = req.params.id;
+    const authorData = req.body;
+    const updatedAuthor = await prisma.author.update({
+      where: {
+        id: authorId,
+      },
+      data: authorData
+    });
 
-export { getAuthors, getOneAuthor, addNewAuthor, deleteAuthor };
+    res.json(new ApiResponse(200, updatedAuthor, "Author Deleted Sucessfully"));
+  } catch (e) {
+    console.error(e);
+    await prisma.$disconnect();
+    res.json(new ApiError(500, "Can't delete the author"));
+  }
+});
+
+
+
+export { getAuthors, getOneAuthor, addNewAuthor, deleteAuthor, updateAuthor };
