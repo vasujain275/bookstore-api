@@ -1,5 +1,5 @@
 # Stage 1: Build environment
-FROM node:latest AS builder
+FROM node:21.7.3 AS builder
 
 # Set working directory
 WORKDIR /app
