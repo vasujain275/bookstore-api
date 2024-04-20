@@ -1,14 +1,14 @@
 import { Router } from "express";
 import {
-  addBooks,
+  addNewBook,
   getOneBook,
-  getbooks,
+  getBooks,
 } from "../controllers/books.controller";
 
 const booksRouter = Router();
 
-booksRouter.route("/").post(addBooks);
-booksRouter.route("/").get(getbooks);
+booksRouter.route("/").post(addNewBook);
+booksRouter.route("/").get(getBooks);
 booksRouter.route("/:id").get(getOneBook);
 
 export { booksRouter };

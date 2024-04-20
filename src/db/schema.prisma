@@ -13,7 +13,7 @@ model Author {
   id        String   @id @default(uuid())
   name      String
   email     String   @unique
-  books     Book[]
+  books     Book[]   @relation("authorBooks")
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
 
@@ -24,7 +24,7 @@ model Book {
   id            String     @id @default(uuid())
   title         String     @unique
   publishedYear Int
-  author        Author     @relation(fields: [authorId], references: [id])
+  author        Author     @relation("authorBooks", fields: [authorId], references: [id])
   authorId      String
   categories    Category[]
   price         Float

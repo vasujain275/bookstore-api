@@ -1,66 +1,67 @@
 import { prisma } from "../index";
-import { Response, Request } from "express";
-import { Book } from "@prisma/client";
+import { asyncHandler } from "../utils/asyncHandler";
+import { ApiResponse } from "../utils/ApiResponse";
+import { ApiError } from "../utils/ApiError";
 
-const addBooks = async (req: Request, res: Response) => {
-  const { title, publishedYear, authorId, price } = req.body;
+const getBooks = asyncHandler(async (req, res) => {
   try {
-    const book: Book = await prisma.book.create({
+    const books = await prisma.author.findMany();
+    res.json(
+      new ApiResponse(200, books, "Fetched all the books Succesfully!")
+    );
+  } catch (e) {
+    console.error(e);
+    await prisma.$disconnect();
+    res.json(new ApiError(500, "Can't fetched the books from the db"));
+  }
+});
+
+const getOneBook = asyncHandler(async (req, res) => {
+  try {
+    const bookId = req.params.id;
+    const book = await prisma.author.findUnique({
+      where: {
+        id: bookId
+      }
+    });
+    res.json(new ApiResponse(200, book, "Fetched the book Succesfully!"));
+  } catch (e) {
+    console.error(e);
+    await prisma.$disconnect();
+    res.json(new ApiError(500, "Can't fetched the book from the db"));
+  }
+});
+
+const addNewBook = asyncHandler(async (req, res) => {
+  try {
+    const { title, publishedYear, authorId, price, categories } = req.body;
+    const book = await prisma.book.create({
       data: {
         title,
         publishedYear,
         price,
         author: {
-          connect: { id: authorId },
+          connect: {
+            id: authorId
+          }
         },
+        categories: {
+          connect: categories.map((category: { id: String }) => ({ id: category.id }))
+
+        }
       },
-    });
+      include: {
+        categories: true
+      }
+    })
 
-    res.status(200).json({
-      book: book,
-    });
+    res.json(new ApiResponse(200, book, "Created new Author Entry"))
+
   } catch (e) {
     console.error(e);
     await prisma.$disconnect();
-    res.status(500).json({
-      message: "Error creating book data to database",
-    });
+    res.json(new ApiError(500, "Can't create new author entry to db"))
   }
-};
+})
 
-const getbooks = async (req: Request, res: Response) => {
-  try {
-    const books = await prisma.book.findMany();
-    res.status(200).json({
-      books: books,
-    });
-  } catch (e) {
-    console.error(e);
-    await prisma.$disconnect();
-    res.status(500).json({
-      message: "Error retriving Books data from db",
-    });
-  }
-};
-
-const getOneBook = async (req: Request, res: Response) => {
-  try {
-    const id = req.params.id;
-    const book = await prisma.book.findUnique({
-      where: {
-        id: id,
-      },
-    });
-    res.status(200).json({
-      book: book,
-    });
-  } catch (e) {
-    console.error(e);
-    await prisma.$disconnect();
-    res.status(500).json({
-      message: "Error retriving Book data from db",
-    });
-  }
-};
-
-export { addBooks, getbooks, getOneBook };
+export { getBooks, getOneBook, addNewBook };
