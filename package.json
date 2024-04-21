@@ -1,7 +1,7 @@
 {
   "name": "bookstore-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Simple Express API that serves as a backend for managing a collection of books stored in a PostgreSQL database",
   "main": "index.ts",
   "scripts": {
     "build": "rimraf dist && tsc",
@@ -13,8 +13,8 @@
     "serve": "node dist/index.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Vasu Jain",
+  "license": "MIT",
   "devDependencies": {
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",
@@ -33,7 +33,6 @@
     "concurrently": "^8.2.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "epxress": "0.0.1-security",
     "express": "^4.19.2",
     "rimraf": "^5.0.5",
     "swagger-jsdoc": "^6.2.8",
