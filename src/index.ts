@@ -34,6 +34,6 @@ app.listen(PORT, () => {
   console.log(`Server is running at PORT - ${PORT}`);
 });
 
-swaggerDocs(app, PORT)
+swaggerDocs(app, PORT);
 
 export { prisma };

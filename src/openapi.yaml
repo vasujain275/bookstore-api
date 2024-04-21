@@ -31,13 +31,13 @@ components:
         publishedYear:
           type: integer
         author:
-          $ref: '#/components/schemas/Author'
+          $ref: "#/components/schemas/Author"
         authorId:
           type: string
         categories:
           type: array
           items:
-            $ref: '#/components/schemas/Category'
+            $ref: "#/components/schemas/Category"
         price:
           type: number
         updatedAt:

@@ -19,21 +19,27 @@ This project is a simple Express API that serves as a backend for managing a col
 ## Installation
 
 1. **Clone the repository:**
+
    - Clone the repository using `git clone https://github.com/vasujain275/bookstore-api.git`.
 
 2. **Install Node.js:**
+
    - If you haven't installed Node.js yet, make sure to install it. You can find the recommended Node.js version to use in the `.node-version` file.
 
 3. **Install `pnpm`:**
+
    - If you don't have `pnpm` installed, you can install it globally using `npm install -g pnpm`.
 
 4. **Install dependencies:**
+
    - Navigate into the project directory and run `pnpm install` to install the project dependencies.
 
 5. **Set up environment variables:**
+
    - Copy the `.env.example` file and rename it to `.env`. Fill in the required variables with your own values.
 
 6. **Set up PostgreSQL:**
+
    - Set up your PostgreSQL instance according to your preference. After setting up, run `pnpm dlx prisma migrate` to apply migrations using Prisma.
 
 7. **Start the development server:**
@@ -42,7 +48,6 @@ This project is a simple Express API that serves as a backend for managing a col
 ## Usage
 
 To use the API, send HTTP requests to the provided endpoints. You can find detailed documentation on how to interact with the API in the Swagger documentation available after hosting at [localhost:8069/docs](http://localhost:8069/docs).
-
 
 ### Standard API Response
 
@@ -63,6 +68,7 @@ The `ApiResponse` class provides a standardized format for API responses. It inc
   "success": true
 }
 ```
+
 ### Standard API Error
 
 The `ApiError` class represents a standardized format for API error responses. It extends the built-in `Error` class and includes the following properties:
@@ -81,12 +87,9 @@ The `ApiError` class represents a standardized format for API error responses. I
   "data": null,
   "message": "Resource not found",
   "success": false,
-  "errors": [
-    "The requested resource could not be found"
-  ]
+  "errors": ["The requested resource could not be found"]
 }
 ```
-
 
 ## Contributing
 
@@ -104,6 +107,3 @@ Please ensure your code adheres to the existing code style and includes appropri
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
-

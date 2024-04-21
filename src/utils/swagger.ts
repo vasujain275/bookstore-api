@@ -2,7 +2,7 @@ import { version } from "../../package.json";
 import { Express, Response, Request } from "express";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
-import YAML from 'yamljs';
+import YAML from "yamljs";
 
 const options: swaggerJSDoc.Options = {
   definition: {
@@ -18,7 +18,7 @@ const options: swaggerJSDoc.Options = {
 const swaggerSpec = swaggerJSDoc(options);
 
 // Load the OpenAPI specification from the openapi.yaml file
-const openapiYaml = YAML.load('./src/openapi.yaml');
+const openapiYaml = YAML.load("./src/openapi.yaml");
 
 // Merge the loaded YAML with the existing swaggerSpec
 Object.assign(swaggerSpec, openapiYaml);
