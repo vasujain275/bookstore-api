@@ -1,51 +1,21 @@
-# Stage 1: Build environment
 FROM node:21.7.3 AS builder
 
-# Set working directory
 WORKDIR /app
 
-# Clone repository
-RUN git clone https://github.com/vasujain275/bookstore-api.git .
-
-# Install pnpm
-RUN npm install -g pnpm
-
-# Install project dependencies
-RUN pnpm install
-
-# Set up environment variables
-RUN cp .env.sample .env
-
-RUN pnpm dlx prisma migrate
-
-RUN pnpm dlx prisma generate
-
-RUN pnpm run build
-
-# Set up PostgreSQL (Assuming PostgreSQL setup is not needed in Docker)
-
-# Stage 2: Production environment
-FROM node:alpine AS production
-
-# Set working directory
-WORKDIR /app
-
-# Copy only the necessary files from the builder stage
-COPY --from=builder /app/dist /app/dist
-COPY --from=builder /app/package.json /app/package.json
-COPY --from=builder /app/.env.sample /app/.env
-COPY --from=builder /app/src/openapi.yaml /app/src/openapi.yaml
-COPY --from=builder /app/src/db/schema.prisma /app/src/db/schema.prisma
+COPY . .
 
 RUN npm install -g pnpm
 
-RUN pnpm i -P
+RUN pnpm install -P
 
-RUN pnpm dlx prisma migrate deploy
+# Install postgresql-client for the psql command
+RUN apt-get update && apt-get install -y postgresql-client
 
-RUN pnpm dlx prisma generate
+# Make the wait-for-postgres-docker.sh script executable
+COPY scripts/wait-for-postgres-docker.sh /wait-for-postgres-docker.sh
+RUN chmod +x /wait-for-postgres-docker.sh
 
-# Command to start the server
-CMD ["npm", "run", "serve"]
+# Use the wait-for-postgres-docker.sh script to ensure Postgres is ready before running migrations and starting the server
+CMD /wait-for-postgres-docker.sh postgres:5432 -- pnpm dlx prisma migrate deploy && pnpm run start
 
 EXPOSE 8069
