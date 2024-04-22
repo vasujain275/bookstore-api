@@ -42,6 +42,11 @@ This project is a simple Express API that serves as a backend for managing a col
 
    - Set up your PostgreSQL instance according to your preference. After setting up, run `pnpm dlx prisma migrate` to apply migrations using Prisma.
 
+```bash
+docker exec -it bookstore_api /bin/bash -c "cd /app && pnpm dlx prisma migrate deploy"
+```
+
+
 7. **Start the development server:**
    - Finally, start the development server by running `pnpm dlx run dev`.
 

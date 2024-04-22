@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres123}
       POSTGRES_DB: ${POSTGRES_DB:-bookstoreDB}
 
-  api:
+  server:
     build:
       context: .
       dockerfile: Dockerfile
