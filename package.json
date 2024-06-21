@@ -10,7 +10,9 @@
     "predev": "rimraf dist && pnpm run build",
     "dev": "concurrently \"tsc -w\" \"nodemon --env-file .env dist/index.js\"",
     "lint": "pnpm exec prettier . --write",
-    "serve": "node dist/index.js"
+    "serve": "node dist/index.js",
+    "preprod": "pnpm run build",
+    "prod":"node dist/index.js"
   },
   "keywords": [],
   "author": "Vasu Jain",

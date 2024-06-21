@@ -17,4 +17,4 @@ EXPOSE 8069
 
 RUN pnpm dlx prisma generate
 
-CMD [ "pnpm", "run", "start" ]
+CMD [ "pnpm", "run", "prod" ]
