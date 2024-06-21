@@ -50,6 +50,9 @@ docker exec -it bookstore_api /bin/bash -c "cd /app && pnpm dlx prisma migrate d
 7. **Start the development server:**
    - Finally, start the development server by running `pnpm dlx run dev`.
 
+# Production Use with Docker Compose
+
+
 ## Usage
 
 To use the API, send HTTP requests to the provided endpoints. You can find detailed documentation on how to interact with the API in the Swagger documentation available after hosting at [localhost:8069/docs](http://localhost:8069/docs).
