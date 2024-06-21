@@ -5,7 +5,8 @@ This project is a simple Express API that serves as a backend for managing a col
 ## Table of Contents
 
 - [Models](#models)
-- [Installation](#installation)
+- [Server Setup Using Docker](#server-setup-using-docker)
+- [Development](#development)
 - [Usage](#usage)
   - [Standard API Response](#standard-api-response)
   - [Standard API Error](#standard-api-error)
@@ -16,7 +17,59 @@ This project is a simple Express API that serves as a backend for managing a col
 
 ![image](https://github.com/vasujain275/bookstore-api/assets/69643310/edff67df-b576-4e8f-a4f3-9fbf672a2c0c)
 
-## Installation
+## Server Setup Using Docker
+
+This guide will help you set up the server using Docker. We will use the `docker-compose` tool to configure and run the services. The services include a PostgreSQL database and the Bookstore API server.
+
+### Prerequisites
+
+- Docker
+- Docker Compose
+
+### Docker Hub Repository
+
+The Docker image for the Bookstore API is available on Docker Hub:
+[vasujain275/bookstore-api](https://hub.docker.com/repository/docker/vasujain275/bookstore-api/general)
+
+### Docker Compose File
+
+Create a `docker-compose.yml` file with the following content:
+
+```yaml
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres123}
+      POSTGRES_DB: ${POSTGRES_DB:-bookstoreDB}
+
+  server:
+    image: vasujain275/bookstore-api:main
+    container_name: bookstore_api
+    ports:
+      - "8069:8069"
+    depends_on:
+      - postgres
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres123}@postgres:5432/${POSTGRES_DB:-bookstoreDB}
+      - PORT=8069
+```
+
+Finally, run the following command - 
+
+```bash
+docker exec -it bookstore_api /bin/bash -c "cd /app && pnpm dlx prisma migrate deploy"
+```
+
+
+## Development
 
 1. **Clone the repository:**
 
@@ -42,20 +95,12 @@ This project is a simple Express API that serves as a backend for managing a col
 
    - Set up your PostgreSQL instance according to your preference. After setting up, run `pnpm dlx prisma migrate` to apply migrations using Prisma.
 
-```bash
-docker exec -it bookstore_api /bin/bash -c "cd /app && pnpm dlx prisma migrate deploy"
-```
-
-
 7. **Start the development server:**
    - Finally, start the development server by running `pnpm dlx run dev`.
 
-# Production Use with Docker Compose
-
-
 ## Usage
 
-To use the API, send HTTP requests to the provided endpoints. You can find detailed documentation on how to interact with the API in the Swagger documentation available after hosting at [localhost:8069/docs](http://localhost:8069/docs).
+To use the API, send HTTP requests to the provided endpoints. You can find detailed documentation on how to interact with the API in the Swagger documentation available after hosting at [localhost:8069/docs](http://localhost:8069/docs) or at [bookstore-api.vasujain.me/docs](https://bookstore-api.vasujain.me/docs)
 
 ### Standard API Response
 
