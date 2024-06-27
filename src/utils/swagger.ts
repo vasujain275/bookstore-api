@@ -1,5 +1,5 @@
 import { version } from "../../package.json";
-import { Express, Response, Request } from "express";
+import type { Express, Response, Request } from "express";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";

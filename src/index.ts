@@ -4,7 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import swaggerDocs from "./utils/swagger";
 
-const PORT: number = parseInt(<string>process.env.PORT, 10) || 8069;
+const PORT: number = Number.parseInt(<string>process.env.PORT, 10) || 8069;
 
 const prisma = new PrismaClient();
 const app = express();
